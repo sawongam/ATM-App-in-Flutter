@@ -1,6 +1,6 @@
+import 'package:atmproject/UI/balance_check.dart';
+import 'package:atmproject/UI/withdraw.dart';
 import 'package:flutter/material.dart';
-import 'package:atmproject/balance_check.dart';
-import 'package:atmproject/withdraw.dart';
 import 'package:flutter/services.dart';
 
 class Menu extends StatelessWidget {
@@ -19,8 +19,9 @@ class Menu extends StatelessWidget {
     ),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              const Spacer(flex: 4),
               const Text(
                 'MENU',
                 style: TextStyle(
@@ -28,7 +29,8 @@ class Menu extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const SizedBox(height: 169),
+              const SizedBox(height: 100),
+              const Spacer(),
               SizedBox(
                 width: 266,
                 height: 52,
@@ -57,7 +59,8 @@ class Menu extends StatelessWidget {
                     ),
                 ),
               ),
-              const SizedBox(height: 40),
+              // const SizedBox(height: 40),
+              const Spacer(),
               SizedBox(
                 width: 266,
                 height: 52,
@@ -86,7 +89,8 @@ class Menu extends StatelessWidget {
                     ),
                 ),
               ),
-              const SizedBox(height: 40),
+              // const SizedBox(height: 40),
+              const Spacer(),
               SizedBox(
                 width: 266,
                 height: 52,
@@ -111,6 +115,7 @@ class Menu extends StatelessWidget {
                     ),
                 ),
               ),
+              const Spacer(flex: 5,),
             ]
           ),
         ),
