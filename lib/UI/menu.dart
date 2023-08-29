@@ -1,5 +1,5 @@
 import 'package:atmproject/UI/balance_check.dart';
-import 'package:atmproject/UI/withdraw.dart';
+import 'package:atmproject/UI/withdraw/withdraw.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

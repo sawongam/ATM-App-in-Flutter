@@ -1,4 +1,4 @@
-import 'package:atmproject/UI/withdraw.dart';
+import 'package:atmproject/UI/withdraw/withdraw.dart';
 import 'package:flutter/material.dart';
 
 class BalanceCheck extends StatelessWidget {
