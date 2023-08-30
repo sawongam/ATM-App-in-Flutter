@@ -38,7 +38,9 @@ class CheckingContainer extends StatelessWidget {
                         // height: 45,
                         // padding: const EdgeInsets.only(top: 13, bottom: 12),
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+
+                            },
                             style: ButtonStyle(
                               shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
@@ -57,7 +59,9 @@ class CheckingContainer extends StatelessWidget {
                         ),
                       ),
                       ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(
