@@ -1,12 +1,17 @@
 import 'package:atmproject/UI/menu.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pinput/pinput.dart';
 
 class AtmPin extends StatelessWidget {
-  const AtmPin({super.key});
+  final String atmNo;
+
+  const AtmPin(this.atmNo, {super.key});
 
   @override
   Widget build(BuildContext context) {
+    var atmPIN = TextEditingController();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());
@@ -50,38 +55,32 @@ class AtmPin extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 50),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Menu()),
-                    );
-                  },
-                  child: Container(
-                    height: 52,
-                    width: 180,
-                    padding: const EdgeInsets.only(left: 25, right: 25),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF232938),
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                    child: const Pinput(
-                      controller: null,
-                      length: 4,
-                      showCursor: false,
-                      obscureText: true,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      defaultPinTheme: PinTheme(
-                        width: 10,
-                        height: 10,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color(0xFF999999),
-                        ),
+                Container(
+                  height: 52,
+                  width: 180,
+                  padding: const EdgeInsets.only(left: 25, right: 25),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF232938),
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: Pinput(
+                    controller: atmPIN,
+                    length: 4,
+                    showCursor: false,
+                    obscureText: true,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    defaultPinTheme: const PinTheme(
+                      width: 15,
+                      height: 15,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color(0xFF999999),
                       ),
-
                     ),
+                    onCompleted: (atmPIN) {
+                      _routetoMenu(context, atmNo, atmPIN);
+                    },
                   ),
                 ),
                 const Spacer(flex: 3),
@@ -90,6 +89,15 @@ class AtmPin extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  void _routetoMenu(BuildContext context, String atmNo, String atmPIN) {
+    Fluttertoast.showToast(msg: 'Logged in successfully');
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => Menu(atmNo, atmPIN)),
     );
   }
 }

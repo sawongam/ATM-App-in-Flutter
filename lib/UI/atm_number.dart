@@ -1,12 +1,14 @@
 import 'package:atmproject/UI/atm_pin.dart';
-import 'package:atmproject/UI/menu.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AtmNumber extends StatelessWidget {
   const AtmNumber({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var atmNo = TextEditingController();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());
@@ -42,16 +44,18 @@ class AtmNumber extends StatelessWidget {
                   ),
                   const SizedBox(height: 120),
                   SizedBox(
-                    height: 50,
+                    height: 70,
                     width: 280,
                     child: TextField(
+                        controller: atmNo,
                         keyboardType: TextInputType.number,
-                        // maxLength: 16,
+                        maxLength: 1,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: const Color(0xFF232938),
                           labelText: 'ATM Card Number',
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 25.0),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 25.0),
                           labelStyle: const TextStyle(
                             color: Color(0xFF999999),
                             fontWeight: FontWeight.w400,
@@ -63,16 +67,11 @@ class AtmNumber extends StatelessWidget {
                             ),
                           ),
                           suffixIcon: IconButton(
-                            icon: const Icon(Icons.arrow_forward),
-                            color: const Color(0xFF999999),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const AtmPin(),
-                                ),
-                              );
-                            },
+                              icon: const Icon(Icons.arrow_forward),
+                              color: const Color(0xFF999999),
+                              onPressed: () {
+                                _routeAtmPin(context, atmNo.text);
+                              }
                           ),
                         ),
                         style: const TextStyle(
@@ -106,5 +105,18 @@ class AtmNumber extends StatelessWidget {
             ),
           )),
     );
+  }
+
+  _routeAtmPin(BuildContext context, String atmNo) {
+    if (atmNo.isEmpty) {
+      Fluttertoast.showToast(msg: 'Please enter your ATM Card Number');
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AtmPin(atmNo),
+        ),
+      );
+    }
   }
 }

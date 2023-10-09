@@ -1,8 +1,27 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:atmproject/UI/withdraw/withdraw.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 
-class BalanceCheck extends StatelessWidget {
+class BalanceCheck extends StatefulWidget {
   const BalanceCheck({super.key});
+
+  @override
+  State<BalanceCheck> createState() => _BalanceCheckState();
+}
+
+class _BalanceCheckState extends State<BalanceCheck> {
+
+  var chkBal = 0;
+  var savBal = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchJSON();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +91,9 @@ class BalanceCheck extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 5),
-                      const Text(
-                        'Rs. 69.00',
-                        style: TextStyle(
+                       Text(
+                         'Rs. ${chkBal.toString()}',
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
@@ -140,7 +159,7 @@ class BalanceCheck extends StatelessWidget {
                       ),
                       const SizedBox(height: 5),
                       const Text(
-                        'CHECKING',
+                        'SAVING',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 14,
@@ -160,9 +179,9 @@ class BalanceCheck extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 5),
-                      const Text(
-                        'Rs. 69.00',
-                        style: TextStyle(
+                       Text(
+                        'Rs. ${savBal.toString()}',
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
@@ -209,5 +228,17 @@ class BalanceCheck extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void fetchJSON() async {
+    final Directory? jsonDir = await getDownloadsDirectory();
+    String jsonPath = '${jsonDir?.path}/atm.json';
+    File file = File(jsonPath);
+    String jsonRaw = await file.readAsString();
+    var jsonParsed = json.decode(jsonRaw);
+    setState(() {
+      chkBal = jsonParsed[0]['chkBal'];
+      savBal = jsonParsed[0]['savBal'];
+    });
   }
 }
