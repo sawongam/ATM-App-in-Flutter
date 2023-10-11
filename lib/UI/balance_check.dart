@@ -5,23 +5,10 @@ import 'package:atmproject/UI/withdraw/withdraw.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
-class BalanceCheck extends StatefulWidget {
-  const BalanceCheck({super.key});
+class BalanceCheck extends StatelessWidget {
+  final int chkBal, savBal;
 
-  @override
-  State<BalanceCheck> createState() => _BalanceCheckState();
-}
-
-class _BalanceCheckState extends State<BalanceCheck> {
-
-  var chkBal = 0;
-  var savBal = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    fetchJSON();
-  }
+  const BalanceCheck(this.chkBal, this.savBal, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +43,7 @@ class _BalanceCheckState extends State<BalanceCheck> {
                     color: const Color(0xFF232938),
                     borderRadius: BorderRadius.circular(7),
                   ),
-                  child:  Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -91,8 +78,8 @@ class _BalanceCheckState extends State<BalanceCheck> {
                         ),
                       ),
                       const SizedBox(height: 5),
-                       Text(
-                         'Rs. ${chkBal.toString()}',
+                      Text(
+                        'Rs. $chkBal',
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 14,
@@ -109,8 +96,8 @@ class _BalanceCheckState extends State<BalanceCheck> {
                             onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const Withdraw()
-                                ),
+                                MaterialPageRoute(
+                                    builder: (context) => const Withdraw()),
                               );
                             },
                             child: Row(
@@ -144,7 +131,7 @@ class _BalanceCheckState extends State<BalanceCheck> {
                     color: const Color(0xFF232938),
                     borderRadius: BorderRadius.circular(7),
                   ),
-                  child:  Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -179,8 +166,8 @@ class _BalanceCheckState extends State<BalanceCheck> {
                         ),
                       ),
                       const SizedBox(height: 5),
-                       Text(
-                        'Rs. ${savBal.toString()}',
+                      Text(
+                        'Rs. $savBal',
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 14,
@@ -197,8 +184,8 @@ class _BalanceCheckState extends State<BalanceCheck> {
                             onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const Withdraw()
-                                ),
+                                MaterialPageRoute(
+                                    builder: (context) => const Withdraw()),
                               );
                             },
                             child: Row(
@@ -228,17 +215,5 @@ class _BalanceCheckState extends State<BalanceCheck> {
         ),
       ),
     );
-  }
-
-  void fetchJSON() async {
-    final Directory? jsonDir = await getDownloadsDirectory();
-    String jsonPath = '${jsonDir?.path}/atm.json';
-    File file = File(jsonPath);
-    String jsonRaw = await file.readAsString();
-    var jsonParsed = json.decode(jsonRaw);
-    setState(() {
-      chkBal = jsonParsed[0]['chkBal'];
-      savBal = jsonParsed[0]['savBal'];
-    });
   }
 }
