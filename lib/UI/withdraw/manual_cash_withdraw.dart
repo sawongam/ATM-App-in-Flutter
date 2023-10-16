@@ -1,7 +1,10 @@
+import 'package:atmproject/UI/withdraw/manual_withdraw/checking_manual.dart';
+import 'package:atmproject/UI/withdraw/tabs_withdraw/checking_container.dart';
 import 'package:flutter/material.dart';
 
 class ManualCashWithdraw extends StatelessWidget {
-  const ManualCashWithdraw({super.key});
+  final String atmNo;
+  const ManualCashWithdraw(this.atmNo,{super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,70 +59,9 @@ class ManualCashWithdraw extends StatelessWidget {
                               Tab(text: 'SAVING'),
                             ]),
                          Flexible(
-                          child: TabBarView(
-                              children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  width: 274,
-                                  // height: 50,
-                                  padding: const EdgeInsets.all(16),
-                                  decoration: ShapeDecoration(
-                                    color: const Color(0xFF232938),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(80),
-                                    ),
-                                  ),
-                                  child: const TextField(
-                                      keyboardType: TextInputType.number,
-                                      decoration: InputDecoration(
-                                        filled: true,
-                                        fillColor: Color(0xFF12161C),
-                                        labelText: 'Enter Withdraw Amount',
-                                        contentPadding: EdgeInsets.symmetric(horizontal: 25.0),
-                                        labelStyle: TextStyle(
-                                          color: Color(0xFF999999),
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 14,
-                                        ),
-                                        border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(80),
-                                          ),
-                                        ),
-                                      ),
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: 40,
-                                  width: 130,
-                                  child: ElevatedButton(
-                                      onPressed: (){},
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Color(0xFF00B8EE),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(85),
-                                        )
-                                    ),
-                                      child: const Text(
-                                        'Withdraw →',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.25,
-                                          letterSpacing: -0.32,
-                                        ),
-                                      ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const Text('data'),
+                          child: TabBarView(children: [
+                            CheckingManual(atmNo),
+                            const Text('In Construction'),
                           ]),
                         ),
                       ],

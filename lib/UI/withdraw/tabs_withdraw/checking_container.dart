@@ -1,14 +1,19 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:atmproject/Default/default_values.dart';
 import 'package:atmproject/Services/confirm_dialog.dart';
+import 'package:atmproject/Services/transaction.dart';
 import 'package:atmproject/UI/withdraw/manual_cash_withdraw.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
 
 class CheckingContainer extends StatelessWidget {
-  const CheckingContainer({super.key});
+  final String atmNo;
+  final int chkBal;
+
+  const CheckingContainer(this.atmNo, this.chkBal, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +26,7 @@ class CheckingContainer extends StatelessWidget {
             width: 110,
             child: ElevatedButton(
               onPressed: () {
-                _transaction();
-                // confirmDialog(context);
+                confirmDialog(context,atmNo, 1000);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xf000000ff),
@@ -47,7 +51,9 @@ class CheckingContainer extends StatelessWidget {
             height: 55,
             width: 110,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                confirmDialog(context,atmNo, 5000);
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xf000000ff),
                 shape: RoundedRectangleBorder(
@@ -77,7 +83,9 @@ class CheckingContainer extends StatelessWidget {
             height: 55,
             width: 110,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                confirmDialog(context,atmNo, 10000);
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xf000000ff),
                 shape: RoundedRectangleBorder(
@@ -101,7 +109,9 @@ class CheckingContainer extends StatelessWidget {
             height: 55,
             width: 110,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                confirmDialog(context,atmNo, 15000);
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xf000000ff),
                 shape: RoundedRectangleBorder(
@@ -131,7 +141,9 @@ class CheckingContainer extends StatelessWidget {
             height: 55,
             width: 110,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                confirmDialog(context,atmNo, 20000);
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xf000000ff),
                 shape: RoundedRectangleBorder(
@@ -155,7 +167,9 @@ class CheckingContainer extends StatelessWidget {
             height: 55,
             width: 110,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                confirmDialog(context,atmNo, 25000);
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xf000000ff),
                 shape: RoundedRectangleBorder(
@@ -186,7 +200,7 @@ class CheckingContainer extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const ManualCashWithdraw()),
+                  builder: (context) => ManualCashWithdraw(atmNo)),
             );
           },
           style: ElevatedButton.styleFrom(
@@ -208,21 +222,6 @@ class CheckingContainer extends StatelessWidget {
         ),
       ),
     ]);
-  }
-
-  void _transaction() async {
-    final Directory? jsonDir = await getDownloadsDirectory();
-    String jsonPath = '${jsonDir?.path}/atm.json';
-    File file = File(jsonPath);
-    String jsonRaw = await file.readAsString();
-    var jsonParsed = json.decode(jsonRaw);
-    var newJson = jsonParsed.map((e) {
-      if (e['atmNo'] == '0') {
-        e['chkBal'] = e['chkBal'] - 1;
-      }
-      return e;
-    }).toList();
-    print(newJson);
   }
 
 }

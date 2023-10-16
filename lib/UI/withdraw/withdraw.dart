@@ -58,10 +58,10 @@ class Withdraw extends StatelessWidget {
                           ]
                       ),
                       const SizedBox(height: 50),
-                      const Flexible(
+                       Flexible(
                         child: TabBarView(
                           children: [
-                            CheckingContainer(),
+                            CheckingContainer(atmNo, chkBal),
                             SavingContainer(),
                           ]
                         ),

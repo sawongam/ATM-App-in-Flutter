@@ -93,7 +93,7 @@ class AtmPin extends StatelessWidget {
   }
 
   void _routetoMenu(BuildContext context, String atmNo, String atmPIN) {
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => Menu(atmNo, atmPIN)),
     );
