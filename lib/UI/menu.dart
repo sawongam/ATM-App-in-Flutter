@@ -1,6 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:atmproject/Default/default_values.dart';
+import 'package:atmproject/Services/setup_json.dart';
+import 'package:atmproject/Services/read_json.dart';
+import 'package:atmproject/Test/test.dart';
 import 'package:atmproject/UI/balance_check.dart';
 import 'package:atmproject/UI/withdraw/withdraw.dart';
 import 'package:flutter/material.dart';
@@ -18,15 +22,14 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-
   var chkBal = 0;
   var savBal = 0;
 
   @override
   void initState() {
     super.initState();
-    writeJSON();
-    readJSON();
+    _isAccLogged();
+    _readInitJSON();
   }
 
   @override
@@ -142,43 +145,36 @@ class _MenuState extends State<Menu> {
     );
   }
 
-  void writeJSON() async {
-    final Directory? jsonDir = await getDownloadsDirectory();
-    String jsonPath = '${jsonDir?.path}/atm.json';
-    if (File(jsonPath).existsSync()) {
-      File file = File(jsonPath);
-      file.writeAsString(
-          '[{"atmNo":"${widget.atmNo}","atmPIN":"${widget.atmPIN}","chkBal": 69, "savBal": 420}]');
-    } else {
-      File file = File(jsonPath);
-      file.writeAsString(
-          '[{"atmNo":"${widget.atmNo}","atmPIN":"${widget.atmPIN}","chkBal": 69, "savBal": 420}]');
-    }
-  }
-
-  void readJSON() async {
-    final Directory? jsonDir = await getDownloadsDirectory();
-    String jsonPath = '${jsonDir?.path}/atm.json';
-    File file = File(jsonPath);
-    String jsonRaw = await file.readAsString();
-    var jsonParsed = json.decode(jsonRaw);
-    Map atmMap = jsonParsed.firstWhere((element) => element['atmNo'] == widget.atmNo);
-    chkBal = atmMap['chkBal'];
-    savBal = atmMap['savBal'];
-  }
-
-
   void _routetoBalanceCheck() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) =>  BalanceCheck(chkBal, savBal)),
+      MaterialPageRoute(builder: (context) => BalanceCheck(chkBal, savBal)),
     );
   }
 
   void _routetoWithdraw() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => Withdraw(chkBal, savBal)),
+      MaterialPageRoute(
+          builder: (context) => Withdraw(widget.atmNo, chkBal, savBal)),
     );
+  }
+
+  void _isAccLogged() async {
+    Future<bool> accLogged = setupJSON(widget.atmNo, widget.atmPIN);
+    if (await accLogged) {
+      Fluttertoast.showToast(msg: 'Logged in');
+    } else {
+      Fluttertoast.showToast(msg: 'New Account Created');
+    }
+  }
+
+  void _readInitJSON() async {
+    File file = await defaultDir();
+    String jsonRaw = await file.readAsString();
+    var jsonParsed = json.decode(jsonRaw);
+    Map atmMap = jsonParsed.firstWhere((element) => element['atmNo'] == widget.atmNo);
+    chkBal = atmMap['chkBal'];
+    savBal = atmMap['savBal'];
   }
 }

@@ -94,11 +94,11 @@ class BalanceCheck extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Withdraw()),
-                              );
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //       builder: (context) => Withdraw()),
+                              // );
                             },
                             child: Row(
                               children: [
@@ -182,11 +182,11 @@ class BalanceCheck extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Withdraw()),
-                              );
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //       builder: (context) => const Withdraw()),
+                              // );
                             },
                             child: Row(
                               children: [

@@ -93,9 +93,7 @@ class AtmPin extends StatelessWidget {
   }
 
   void _routetoMenu(BuildContext context, String atmNo, String atmPIN) {
-    Fluttertoast.showToast(msg: 'Logged in successfully');
-
-    Navigator.pushReplacement(
+    Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => Menu(atmNo, atmPIN)),
     );

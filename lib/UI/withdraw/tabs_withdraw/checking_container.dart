@@ -1,6 +1,11 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:atmproject/Services/confirm_dialog.dart';
 import 'package:atmproject/UI/withdraw/manual_cash_withdraw.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:path_provider/path_provider.dart';
 
 class CheckingContainer extends StatelessWidget {
   const CheckingContainer({super.key});
@@ -16,8 +21,8 @@ class CheckingContainer extends StatelessWidget {
             width: 110,
             child: ElevatedButton(
               onPressed: () {
-                
-                confirmDialog(context);
+                _transaction();
+                // confirmDialog(context);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xf000000ff),
@@ -79,7 +84,8 @@ class CheckingContainer extends StatelessWidget {
                   borderRadius: BorderRadius.circular(85),
                   side: const BorderSide(width: 0.69, color: Color(0xFF8FA0A1)),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
               ),
               child: const Text(
                 'Rs. 10,000',
@@ -95,8 +101,7 @@ class CheckingContainer extends StatelessWidget {
             height: 55,
             width: 110,
             child: ElevatedButton(
-              onPressed: () {
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xf000000ff),
                 shape: RoundedRectangleBorder(
@@ -104,7 +109,7 @@ class CheckingContainer extends StatelessWidget {
                   side: const BorderSide(width: 0.69, color: Color(0xFF8FA0A1)),
                 ),
                 padding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
               ),
               child: const Text(
                 'Rs. 15,000',
@@ -126,9 +131,7 @@ class CheckingContainer extends StatelessWidget {
             height: 55,
             width: 110,
             child: ElevatedButton(
-              onPressed: () {
-
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xf000000ff),
                 shape: RoundedRectangleBorder(
@@ -152,8 +155,7 @@ class CheckingContainer extends StatelessWidget {
             height: 55,
             width: 110,
             child: ElevatedButton(
-              onPressed: () {
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xf000000ff),
                 shape: RoundedRectangleBorder(
@@ -207,4 +209,20 @@ class CheckingContainer extends StatelessWidget {
       ),
     ]);
   }
+
+  void _transaction() async {
+    final Directory? jsonDir = await getDownloadsDirectory();
+    String jsonPath = '${jsonDir?.path}/atm.json';
+    File file = File(jsonPath);
+    String jsonRaw = await file.readAsString();
+    var jsonParsed = json.decode(jsonRaw);
+    var newJson = jsonParsed.map((e) {
+      if (e['atmNo'] == '0') {
+        e['chkBal'] = e['chkBal'] - 1;
+      }
+      return e;
+    }).toList();
+    print(newJson);
+  }
+
 }

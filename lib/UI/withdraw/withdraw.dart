@@ -3,7 +3,11 @@ import 'package:atmproject/UI/withdraw/tabs_withdraw/saving_container.dart';
 import 'package:flutter/material.dart';
 
 class Withdraw extends StatelessWidget {
-  const Withdraw({super.key});
+
+  final String atmNo;
+  final int chkBal, savBal;
+
+  const Withdraw(this.atmNo, this.chkBal, this.savBal, {super.key});
 
   @override
   Widget build(BuildContext context) {
