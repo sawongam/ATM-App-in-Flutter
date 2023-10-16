@@ -174,7 +174,7 @@ class _MenuState extends State<Menu> {
     String jsonRaw = await file.readAsString();
     var jsonParsed = json.decode(jsonRaw);
     Map atmMap = jsonParsed.firstWhere((element) => element['atmNo'] == widget.atmNo);
-    chkBal = atmMap['chkBal'];
-    savBal = atmMap['savBal'];
+    chkBal = int.parse(atmMap['chkBal']);
+    savBal = int.parse(atmMap['savBal']);
   }
 }
