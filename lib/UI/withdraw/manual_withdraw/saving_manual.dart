@@ -1,9 +1,9 @@
 import 'package:atmproject/Services/confirm_dialog.dart';
 import 'package:flutter/material.dart';
 
-class CheckingManual extends StatelessWidget {
+class SavingManual extends StatelessWidget {
   final String atmNo;
-  const CheckingManual(this.atmNo, {super.key});
+  const SavingManual(this.atmNo, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class CheckingManual extends StatelessWidget {
           width: 130,
           child: ElevatedButton(
             onPressed: () {
-              confirmDialog(context,atmNo, int.parse(manualAmount.text), 'chkBal');
+              confirmDialog(context,atmNo, int.parse(manualAmount.text), 'savBal');
               manualAmount.clear();
             },
             style: ElevatedButton.styleFrom(

@@ -22,14 +22,11 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-  var chkBal = 0;
-  var savBal = 0;
 
   @override
   void initState() {
     super.initState();
     _isAccLogged();
-    _readInitJSON();
   }
 
   @override
@@ -148,7 +145,7 @@ class _MenuState extends State<Menu> {
   void _routetoBalanceCheck() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => BalanceCheck(chkBal, savBal)),
+      MaterialPageRoute(builder: (context) => BalanceCheck(widget.atmNo)),
     );
   }
 
@@ -156,7 +153,7 @@ class _MenuState extends State<Menu> {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => Withdraw(widget.atmNo, chkBal, savBal)),
+          builder: (context) => Withdraw(widget.atmNo)),
     );
   }
 
@@ -167,14 +164,5 @@ class _MenuState extends State<Menu> {
     } else {
       Fluttertoast.showToast(msg: 'New Account Created');
     }
-  }
-
-  void _readInitJSON() async {
-    File file = await defaultDir();
-    String jsonRaw = await file.readAsString();
-    var jsonParsed = json.decode(jsonRaw);
-    Map atmMap = jsonParsed.firstWhere((element) => element['atmNo'] == widget.atmNo);
-    chkBal = int.parse(atmMap['chkBal']);
-    savBal = int.parse(atmMap['savBal']);
   }
 }

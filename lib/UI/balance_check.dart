@@ -1,14 +1,29 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:atmproject/Default/default_values.dart';
 import 'package:atmproject/UI/withdraw/withdraw.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
-class BalanceCheck extends StatelessWidget {
-  final int chkBal, savBal;
+class BalanceCheck extends StatefulWidget {
+  final String atmNo;
+  const BalanceCheck(this.atmNo, {super.key});
 
-  const BalanceCheck(this.chkBal, this.savBal, {super.key});
+  @override
+  State<BalanceCheck> createState() => _BalanceCheckState();
+}
+
+class _BalanceCheckState extends State<BalanceCheck> {
+
+  int chkBal = 0;
+  int savBal = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _readInitJSON();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -216,4 +231,17 @@ class BalanceCheck extends StatelessWidget {
       ),
     );
   }
+
+  void _readInitJSON() async {
+    File file = await defaultDir();
+    String jsonRaw = await file.readAsString();
+    var jsonParsed = json.decode(jsonRaw);
+    Map atmMap = jsonParsed.firstWhere((element) => element['atmNo'] == widget.atmNo);
+    setState(() {
+      chkBal = int.parse(atmMap['chkBal']);
+      savBal = int.parse(atmMap['savBal']);
+    });
+  }
+
+
 }

@@ -3,7 +3,7 @@ import 'package:atmproject/Services/success_dialog.dart';
 import 'package:atmproject/Services/transaction.dart';
 import 'package:flutter/material.dart';
 
-void confirmDialog(BuildContext context, String atmNo, int amount) {
+void confirmDialog(BuildContext context, String atmNo, int amount,String balType) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
@@ -34,7 +34,7 @@ void confirmDialog(BuildContext context, String atmNo, int amount) {
       actions: [
         ElevatedButton(
             onPressed: () {
-              transaction(context, atmNo, amount);
+              transaction(context, atmNo, amount, balType);
               Navigator.pop(context);
             },
             style: ButtonStyle(

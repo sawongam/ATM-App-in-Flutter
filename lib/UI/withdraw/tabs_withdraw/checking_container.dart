@@ -1,19 +1,12 @@
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:atmproject/Default/default_values.dart';
 import 'package:atmproject/Services/confirm_dialog.dart';
-import 'package:atmproject/Services/transaction.dart';
-import 'package:atmproject/UI/withdraw/manual_cash_withdraw.dart';
+import 'package:atmproject/UI/withdraw/manual_withdraw/manual_cash_withdraw.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:path_provider/path_provider.dart';
 
 class CheckingContainer extends StatelessWidget {
   final String atmNo;
-  final int chkBal;
+  final String balType = 'chkBal';
 
-  const CheckingContainer(this.atmNo, this.chkBal, {super.key});
+  const CheckingContainer(this.atmNo, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +19,7 @@ class CheckingContainer extends StatelessWidget {
             width: 110,
             child: ElevatedButton(
               onPressed: () {
-                confirmDialog(context,atmNo, 1000);
+                confirmDialog(context, atmNo, 1000, balType);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xf000000ff),
@@ -52,7 +45,7 @@ class CheckingContainer extends StatelessWidget {
             width: 110,
             child: ElevatedButton(
               onPressed: () {
-                confirmDialog(context,atmNo, 5000);
+                confirmDialog(context, atmNo, 5000, balType);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xf000000ff),
@@ -84,7 +77,7 @@ class CheckingContainer extends StatelessWidget {
             width: 110,
             child: ElevatedButton(
               onPressed: () {
-                confirmDialog(context,atmNo, 10000);
+                confirmDialog(context, atmNo, 10000, balType);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xf000000ff),
@@ -110,7 +103,7 @@ class CheckingContainer extends StatelessWidget {
             width: 110,
             child: ElevatedButton(
               onPressed: () {
-                confirmDialog(context,atmNo, 15000);
+                confirmDialog(context, atmNo, 15000, balType);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xf000000ff),
@@ -142,7 +135,7 @@ class CheckingContainer extends StatelessWidget {
             width: 110,
             child: ElevatedButton(
               onPressed: () {
-                confirmDialog(context,atmNo, 20000);
+                confirmDialog(context, atmNo, 20000, balType);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xf000000ff),
@@ -168,7 +161,7 @@ class CheckingContainer extends StatelessWidget {
             width: 110,
             child: ElevatedButton(
               onPressed: () {
-                confirmDialog(context,atmNo, 25000);
+                confirmDialog(context, atmNo, 25000, balType);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xf000000ff),
@@ -223,5 +216,4 @@ class CheckingContainer extends StatelessWidget {
       ),
     ]);
   }
-
 }

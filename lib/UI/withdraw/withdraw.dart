@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 class Withdraw extends StatelessWidget {
 
   final String atmNo;
-  final int chkBal, savBal;
 
-  const Withdraw(this.atmNo, this.chkBal, this.savBal, {super.key});
+  const Withdraw(this.atmNo, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        body: Container(
+          resizeToAvoidBottomInset: false,
+          body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [Color(0xFF101727), Color(0xFF111418)],
@@ -61,8 +61,8 @@ class Withdraw extends StatelessWidget {
                        Flexible(
                         child: TabBarView(
                           children: [
-                            CheckingContainer(atmNo, chkBal),
-                            SavingContainer(),
+                            CheckingContainer(atmNo),
+                            SavingContainer(atmNo),
                           ]
                         ),
                       ),
