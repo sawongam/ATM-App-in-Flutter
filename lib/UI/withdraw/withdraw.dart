@@ -5,13 +5,16 @@ import 'package:flutter/material.dart';
 class Withdraw extends StatelessWidget {
 
   final String atmNo;
+  final int initialTabIndex;
 
-  const Withdraw(this.atmNo, {super.key});
+  const Withdraw(this.atmNo, this.initialTabIndex, {super.key});
 
   @override
   Widget build(BuildContext context) {
+
     return DefaultTabController(
       length: 2,
+      initialIndex: initialTabIndex,
       child: Scaffold(
           resizeToAvoidBottomInset: false,
           body: Container(
@@ -76,4 +79,5 @@ class Withdraw extends StatelessWidget {
       ),
     );
   }
+
 }

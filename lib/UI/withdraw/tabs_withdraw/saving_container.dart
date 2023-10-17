@@ -192,7 +192,7 @@ class SavingContainer extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => ManualCashWithdraw(atmNo)),
+                  builder: (context) => ManualCashWithdraw(atmNo,1)),
             );
           },
           style: ElevatedButton.styleFrom(

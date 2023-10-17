@@ -19,6 +19,9 @@ class _BalanceCheckState extends State<BalanceCheck> {
   int chkBal = 0;
   int savBal = 0;
 
+  int initialChkIndex = 0;
+  int initialSavIndex = 1;
+
   @override
   void initState() {
     super.initState();
@@ -109,11 +112,11 @@ class _BalanceCheckState extends State<BalanceCheck> {
                         children: [
                           InkWell(
                             onTap: () {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //       builder: (context) => Withdraw()),
-                              // );
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Withdraw(widget.atmNo, initialChkIndex)),
+                              );
                             },
                             child: Row(
                               children: [
@@ -197,11 +200,11 @@ class _BalanceCheckState extends State<BalanceCheck> {
                         children: [
                           InkWell(
                             onTap: () {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //       builder: (context) => const Withdraw()),
-                              // );
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Withdraw(widget.atmNo, initialSavIndex)),
+                              );
                             },
                             child: Row(
                               children: [

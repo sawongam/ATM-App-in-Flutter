@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 
 class ManualCashWithdraw extends StatelessWidget {
   final String atmNo;
-  const ManualCashWithdraw(this.atmNo,{super.key});
+  final int initialTabIndex;
+
+  const ManualCashWithdraw(this.atmNo, this.initialTabIndex, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +17,7 @@ class ManualCashWithdraw extends StatelessWidget {
       },
       child: DefaultTabController(
         length: 2,
+        initialIndex: initialTabIndex,
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           body: Container(
@@ -59,7 +62,7 @@ class ManualCashWithdraw extends StatelessWidget {
                               Tab(text: 'CHECKING'),
                               Tab(text: 'SAVING'),
                             ]),
-                         Flexible(
+                        Flexible(
                           child: TabBarView(children: [
                             CheckingManual(atmNo),
                             SavingManual(atmNo),

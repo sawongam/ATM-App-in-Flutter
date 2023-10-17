@@ -153,7 +153,7 @@ class _MenuState extends State<Menu> {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => Withdraw(widget.atmNo)),
+          builder: (context) => Withdraw(widget.atmNo, 0)),
     );
   }
 
