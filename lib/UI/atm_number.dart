@@ -49,7 +49,7 @@ class AtmNumber extends StatelessWidget {
                     child: TextField(
                         controller: atmNo,
                         keyboardType: TextInputType.number,
-                        maxLength: 1,
+                        maxLength: 8,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: const Color(0xFF232938),
@@ -71,8 +71,7 @@ class AtmNumber extends StatelessWidget {
                               color: const Color(0xFF999999),
                               onPressed: () {
                                 _routeAtmPin(context, atmNo.text);
-                              }
-                          ),
+                              }),
                         ),
                         style: const TextStyle(
                           color: Colors.white,

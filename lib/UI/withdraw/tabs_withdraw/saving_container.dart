@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class SavingContainer extends StatelessWidget {
   final String atmNo;
   final String balType = 'savBal';
+
   const SavingContainer(this.atmNo, {super.key});
 
   @override
@@ -27,7 +28,7 @@ class SavingContainer extends StatelessWidget {
                   side: const BorderSide(width: 0.69, color: Color(0xFF8FA0A1)),
                 ),
                 padding:
-                const EdgeInsets.symmetric(horizontal: 15, vertical: 18),
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 18),
               ),
               child: const Text(
                 'Rs. 1000',
@@ -53,7 +54,7 @@ class SavingContainer extends StatelessWidget {
                   side: const BorderSide(width: 0.69, color: Color(0xFF8FA0A1)),
                 ),
                 padding:
-                const EdgeInsets.symmetric(horizontal: 15, vertical: 18),
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 18),
               ),
               child: const Text(
                 'Rs. 5000',
@@ -85,7 +86,7 @@ class SavingContainer extends StatelessWidget {
                   side: const BorderSide(width: 0.69, color: Color(0xFF8FA0A1)),
                 ),
                 padding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
               ),
               child: const Text(
                 'Rs. 10,000',
@@ -111,7 +112,7 @@ class SavingContainer extends StatelessWidget {
                   side: const BorderSide(width: 0.69, color: Color(0xFF8FA0A1)),
                 ),
                 padding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
               ),
               child: const Text(
                 'Rs. 15,000',
@@ -143,7 +144,7 @@ class SavingContainer extends StatelessWidget {
                   side: const BorderSide(width: 0.69, color: Color(0xFF8FA0A1)),
                 ),
                 padding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
               ),
               child: const Text(
                 'Rs. 20,000',
@@ -169,7 +170,7 @@ class SavingContainer extends StatelessWidget {
                   side: const BorderSide(width: 0.69, color: Color(0xFF8FA0A1)),
                 ),
                 padding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
               ),
               child: const Text(
                 'Rs. 25,000',
@@ -192,7 +193,7 @@ class SavingContainer extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => ManualCashWithdraw(atmNo,1)),
+                  builder: (context) => ManualCashWithdraw(atmNo, 1)),
             );
           },
           style: ElevatedButton.styleFrom(

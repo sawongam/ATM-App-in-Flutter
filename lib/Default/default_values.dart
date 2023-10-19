@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:encrypt/encrypt.dart';
 import 'package:path_provider/path_provider.dart';
 
 defaultDir() async {
@@ -14,5 +15,14 @@ String defaultJSON(String atmNo, String atmPIN) {
 }
 
 Map defaultMap(String atmNo, String atmPIN) {
-  return {'atmNo': atmNo, 'atmPIN': atmPIN, 'chkBal': '25000', 'savBal': '25000'};
+  return {
+    'atmNo': atmNo,
+    'atmPIN': atmPIN,
+    'chkBal': '25000',
+    'savBal': '25000'
+  };
 }
+
+final key = Key.fromUtf8('1234567891011121');
+final iv = IV.fromLength(0);
+final encrypter = Encrypter(AES(key, padding: null));

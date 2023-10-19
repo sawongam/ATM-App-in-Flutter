@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class SavingManual extends StatelessWidget {
   final String atmNo;
+
   const SavingManual(this.atmNo, {super.key});
 
   @override
@@ -52,7 +53,8 @@ class SavingManual extends StatelessWidget {
           width: 130,
           child: ElevatedButton(
             onPressed: () {
-              confirmDialog(context,atmNo, int.parse(manualAmount.text), 'savBal');
+              confirmDialog(
+                  context, atmNo, int.parse(manualAmount.text), 'savBal');
               manualAmount.clear();
             },
             style: ElevatedButton.styleFrom(

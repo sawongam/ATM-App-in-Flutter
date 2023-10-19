@@ -1,9 +1,8 @@
-import 'package:atmproject/Services/confirm_dialog.dart';
-import 'package:atmproject/Services/success_dialog.dart';
 import 'package:atmproject/Services/transaction.dart';
 import 'package:flutter/material.dart';
 
-void confirmDialog(BuildContext context, String atmNo, int amount,String balType) {
+void confirmDialog(
+    BuildContext context, String atmNo, int amount, String balType) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(

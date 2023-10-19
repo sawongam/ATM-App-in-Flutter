@@ -3,7 +3,6 @@ import 'package:atmproject/UI/withdraw/tabs_withdraw/saving_container.dart';
 import 'package:flutter/material.dart';
 
 class Withdraw extends StatelessWidget {
-
   final String atmNo;
   final int initialTabIndex;
 
@@ -11,13 +10,12 @@ class Withdraw extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return DefaultTabController(
       length: 2,
       initialIndex: initialTabIndex,
       child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          body: Container(
+        resizeToAvoidBottomInset: false,
+        body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [Color(0xFF101727), Color(0xFF111418)],
@@ -50,24 +48,21 @@ class Withdraw extends StatelessWidget {
                     // mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const SizedBox(height: 15),
-                       TabBar(
-                        indicator: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: const Color(0xFF00B8EE),
-                        ),
+                      TabBar(
+                          indicator: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: const Color(0xFF00B8EE),
+                          ),
                           tabs: const [
                             Tab(text: 'CHECKING'),
                             Tab(text: 'SAVING'),
-                          ]
-                      ),
+                          ]),
                       const SizedBox(height: 50),
-                       Flexible(
-                        child: TabBarView(
-                          children: [
-                            CheckingContainer(atmNo),
-                            SavingContainer(atmNo),
-                          ]
-                        ),
+                      Flexible(
+                        child: TabBarView(children: [
+                          CheckingContainer(atmNo),
+                          SavingContainer(atmNo),
+                        ]),
                       ),
                     ],
                   ),
@@ -79,5 +74,4 @@ class Withdraw extends StatelessWidget {
       ),
     );
   }
-
 }

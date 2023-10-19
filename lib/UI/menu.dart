@@ -1,16 +1,9 @@
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:atmproject/Default/default_values.dart';
 import 'package:atmproject/Services/setup_json.dart';
-import 'package:atmproject/Services/read_json.dart';
-import 'package:atmproject/Test/test.dart';
 import 'package:atmproject/UI/balance_check.dart';
 import 'package:atmproject/UI/withdraw/withdraw.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:path_provider/path_provider.dart';
 
 class Menu extends StatefulWidget {
   final String atmNo, atmPIN;
@@ -22,7 +15,6 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-
   @override
   void initState() {
     super.initState();
@@ -152,8 +144,7 @@ class _MenuState extends State<Menu> {
   void _routetoWithdraw() {
     Navigator.push(
       context,
-      MaterialPageRoute(
-          builder: (context) => Withdraw(widget.atmNo, 0)),
+      MaterialPageRoute(builder: (context) => Withdraw(widget.atmNo, 0)),
     );
   }
 

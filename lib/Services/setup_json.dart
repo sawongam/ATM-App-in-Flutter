@@ -1,15 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:atmproject/Default/default_values.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:encrypt/encrypt.dart';
 
 Future<bool> setupJSON(String atmNo, String atmPIN) async {
   bool accLogged = false;
   File file = await defaultDir();
   if (file.existsSync()) {
-    String jsonRaw = await file.readAsString();
-    List jsonList = jsonRaw.isNotEmpty ? json.decode(jsonRaw) : [];
+    var jsonRaw = await file.readAsString();
+    var jsonEncrypted = Encrypted.fromBase64(jsonRaw);
+    var decrypted = encrypter.decrypt(jsonEncrypted, iv: iv);
+    List jsonList = json.decode(decrypted);
 
     jsonList.map((e) {
       if (e['atmNo'] == atmNo) {
@@ -21,11 +22,12 @@ Future<bool> setupJSON(String atmNo, String atmPIN) async {
       Map toAddMap = defaultMap(atmNo, atmPIN);
       jsonList.add(toAddMap);
       var jsonAdded = json.encode(jsonList);
-      file.writeAsString(jsonAdded);
+      final encrypted = encrypter.encrypt(jsonAdded, iv: iv);
+      file.writeAsString(encrypted.base64);
     }
-    print(jsonList);
   } else {
-    file.writeAsString(defaultJSON(atmNo, atmPIN));
+    final encrypted = encrypter.encrypt(defaultJSON(atmNo, atmPIN), iv: iv);
+    file.writeAsString(encrypted.base64);
   }
   return accLogged;
 }

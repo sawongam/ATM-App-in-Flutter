@@ -3,12 +3,15 @@ import 'dart:io';
 
 import 'package:atmproject/Default/default_values.dart';
 import 'package:atmproject/Services/success_dialog.dart';
+import 'package:encrypt/encrypt.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-void transaction(context, String atmNo,amount,balType) async {
+void transaction(context, String atmNo, amount, balType) async {
   File file = await defaultDir();
   String jsonRaw = await file.readAsString();
-  var jsonParsed = json.decode(jsonRaw);
+  final jsonEncrypted = Encrypted.fromBase64(jsonRaw);
+  final decrypted = encrypter.decrypt(jsonEncrypted, iv: iv);
+  var jsonParsed = json.decode(decrypted);
   var newJson = jsonParsed.map((e) {
     if (e['atmNo'] == atmNo) {
       int oldBal = int.parse(e[balType]);
@@ -22,7 +25,6 @@ void transaction(context, String atmNo,amount,balType) async {
     }
     return e;
   }).toList();
-  await file.writeAsString(json.encode(newJson));
-  print(newJson);
-  print(balType);
+  final newJsonEncrypted = encrypter.encrypt(json.encode(newJson), iv: iv);
+  await file.writeAsString(newJsonEncrypted.base64);
 }

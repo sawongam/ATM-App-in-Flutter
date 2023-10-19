@@ -1,6 +1,5 @@
 import 'package:atmproject/UI/withdraw/manual_withdraw/checking_manual.dart';
 import 'package:atmproject/UI/withdraw/manual_withdraw/saving_manual.dart';
-import 'package:atmproject/UI/withdraw/tabs_withdraw/checking_container.dart';
 import 'package:flutter/material.dart';
 
 class ManualCashWithdraw extends StatelessWidget {

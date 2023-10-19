@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:atmproject/Services/confirm_dialog.dart';
 import 'package:atmproject/UI/withdraw/manual_withdraw/manual_cash_withdraw.dart';
-import 'package:flutter/material.dart';
 
 class CheckingContainer extends StatelessWidget {
   final String atmNo;

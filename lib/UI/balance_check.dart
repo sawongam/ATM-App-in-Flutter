@@ -3,11 +3,12 @@ import 'dart:io';
 
 import 'package:atmproject/Default/default_values.dart';
 import 'package:atmproject/UI/withdraw/withdraw.dart';
+import 'package:encrypt/encrypt.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 
 class BalanceCheck extends StatefulWidget {
   final String atmNo;
+
   const BalanceCheck(this.atmNo, {super.key});
 
   @override
@@ -15,7 +16,6 @@ class BalanceCheck extends StatefulWidget {
 }
 
 class _BalanceCheckState extends State<BalanceCheck> {
-
   int chkBal = 0;
   int savBal = 0;
 
@@ -115,7 +115,8 @@ class _BalanceCheckState extends State<BalanceCheck> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Withdraw(widget.atmNo, initialChkIndex)),
+                                    builder: (context) => Withdraw(
+                                        widget.atmNo, initialChkIndex)),
                               );
                             },
                             child: Row(
@@ -203,7 +204,8 @@ class _BalanceCheckState extends State<BalanceCheck> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Withdraw(widget.atmNo, initialSavIndex)),
+                                    builder: (context) => Withdraw(
+                                        widget.atmNo, initialSavIndex)),
                               );
                             },
                             child: Row(
@@ -238,13 +240,14 @@ class _BalanceCheckState extends State<BalanceCheck> {
   void _readInitJSON() async {
     File file = await defaultDir();
     String jsonRaw = await file.readAsString();
-    var jsonParsed = json.decode(jsonRaw);
-    Map atmMap = jsonParsed.firstWhere((element) => element['atmNo'] == widget.atmNo);
+    final jsonEncrypted = Encrypted.fromBase64(jsonRaw);
+    final decrypted = encrypter.decrypt(jsonEncrypted, iv: iv);
+    var jsonParsed = json.decode(decrypted);
+    Map atmMap =
+        jsonParsed.firstWhere((element) => element['atmNo'] == widget.atmNo);
     setState(() {
       chkBal = int.parse(atmMap['chkBal']);
       savBal = int.parse(atmMap['savBal']);
     });
   }
-
-
 }
