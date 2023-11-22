@@ -10,6 +10,14 @@ A simple ATM App which allows users to enter their ATM Number and PIN, and then 
 * View checking and saving account balance
 * Withdraw cash from your account
 
+## Installation:
+
+For a quick and easy installation, you can directly download the APK file and install it on your Android device. Simply click on the following link to download the APK:
+
+[Download APK](https://github.com/sawongam/sawongam.github.io/raw/main/dumps/ATMProject.apk)
+
+Once the download is complete, transfer the APK file to your Android device and follow the on-screen instructions to install the app.
+
 ## Usage:
 
 * Upon launching the app, you'll see the main menu.
