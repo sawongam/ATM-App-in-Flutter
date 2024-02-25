@@ -1,5 +1,5 @@
-import 'package:atmproject/UI/withdraw/tabs_withdraw/checking_container.dart';
-import 'package:atmproject/UI/withdraw/tabs_withdraw/saving_container.dart';
+import 'package:atmproject/screens/withdraw/tabs_withdraw/checking_container.dart';
+import 'package:atmproject/screens/withdraw/tabs_withdraw/saving_container.dart';
 import 'package:flutter/material.dart';
 
 class Withdraw extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:atmproject/Default/default_values.dart';
-import 'package:atmproject/Services/success_dialog.dart';
+import 'package:atmproject/configs/default.dart';
+import 'package:atmproject/widgets/success_dialog.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 

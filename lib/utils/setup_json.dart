@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:atmproject/Default/default_values.dart';
+import 'package:atmproject/configs/default.dart';
 import 'package:encrypt/encrypt.dart';
 
 Future<bool> setupJSON(String atmNo, String atmPIN) async {

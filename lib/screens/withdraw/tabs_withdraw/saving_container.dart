@@ -1,12 +1,12 @@
+import 'package:atmproject/screens/withdraw/manual_withdraw/manual_cash_withdraw.dart';
+import 'package:atmproject/widgets/confirm_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:atmproject/Services/confirm_dialog.dart';
-import 'package:atmproject/UI/withdraw/manual_withdraw/manual_cash_withdraw.dart';
 
-class CheckingContainer extends StatelessWidget {
+class SavingContainer extends StatelessWidget {
   final String atmNo;
-  final String balType = 'chkBal';
+  final String balType = 'savBal';
 
-  const CheckingContainer(this.atmNo, {super.key});
+  const SavingContainer(this.atmNo, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -193,7 +193,7 @@ class CheckingContainer extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => ManualCashWithdraw(atmNo, 0)),
+                  builder: (context) => ManualCashWithdraw(atmNo, 1)),
             );
           },
           style: ElevatedButton.styleFrom(

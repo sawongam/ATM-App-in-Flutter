@@ -1,6 +1,6 @@
-import 'package:atmproject/Services/setup_json.dart';
-import 'package:atmproject/UI/balance_check.dart';
-import 'package:atmproject/UI/withdraw/withdraw.dart';
+import 'package:atmproject/screens/balance_check.dart';
+import 'package:atmproject/screens/withdraw/withdraw.dart';
+import 'package:atmproject/utils/setup_json.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';

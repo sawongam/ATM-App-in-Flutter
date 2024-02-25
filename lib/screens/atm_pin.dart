@@ -1,4 +1,4 @@
-import 'package:atmproject/UI/menu.dart';
+import 'package:atmproject/screens/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 

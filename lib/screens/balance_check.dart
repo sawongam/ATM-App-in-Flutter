@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:atmproject/Default/default_values.dart';
-import 'package:atmproject/UI/withdraw/withdraw.dart';
+import 'package:atmproject/configs/default.dart';
+import 'package:atmproject/screens/withdraw/withdraw.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:flutter/material.dart';
 
